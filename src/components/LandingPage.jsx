@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
+import logo from '../assets/logo.png'
 
 const LandingPage = () => {
   
@@ -7,71 +9,37 @@ const LandingPage = () => {
  
 
   return (
-    <div className="min-h-screen flex flex-col">
-    {/* Navbar */}
-    <Navbar />
-
-    {/* Container */}
-    <div className="container mx-auto px-4 py-2 flex-grow">
-      {/* Welcome Section */}
-      <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold mt-4 text-gray-800 mb-4">
-          Welcome to Geonotes
-        </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover a new way to interact with your surroundings. Geonotes allows you to leave notes and find notes left by others at specific locations. Explore the world with a new perspective!
-        </p>
-      </div>
-
-      {/* Images Section */}
-      <div className="flex flex-wrap justify-center items-center gap-2 my-4">
-        <img
-          src="./src/assets/map.svg"
-          alt="App screenshot 1"
-          className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] h-auto object-contain" />
-        <img
-          src="./src/assets/nmap.png"
-          alt="App screenshot 2"
-          className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] h-auto object-contain" />
-        <img
-          src="./src/assets/nhome.png"
-          alt="App screenshot 3"
-          className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] h-auto object-contain" />
-      </div>
-      
-      {/* About Section */}
-      <div className="mb-8 text-center">
-        <h3 className="text-3xl font-bold text-gray-800 mb-4">
-          About Geonotes
-        </h3>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Geonotes is your personal geolocation app that allows you to leave and discover notes at specific locations around the globe. Whether you're traveling or exploring your own city, Geonotes connects you with your surroundings uniquely.
-        </p>
-      </div>
-    
-      {/* Download Section */}
-      <div className="flex justify-center mb-8">
-        <a
-          href="https://play.google.com/store/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transform hover:scale-105 transition-transform"
-        >
-          <img
-            src="./assets/google.png"
-            alt="Get it on Google Play"
-            className="w-64 h-auto" />
-        </a>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center">
+          <img 
+            src={logo} 
+            alt="GeoNotes Logo" 
+            className="mx-auto h-32 w-auto mb-8"
+          />
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            Welcome to GeoNotes
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Create, share, and discover location-based notes. Connect with others and explore the world around you.
+          </p>
+          <div className="space-x-4">
+            <Link
+              to="/signup"
+              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Get Started
+            </Link>
+            <Link
+              to="/login"
+              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors"
+            >
+              Sign In
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
-
-    {/* Footer */}
-    <footer className="bg-[#00ffb4] text-center py-4">
-      <p className="text-gray-800">
-        &copy; 2025 Geonotes. All rights reserved.
-      </p>
-    </footer>
-  </div>
   );
 }
 
