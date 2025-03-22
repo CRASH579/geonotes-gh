@@ -7,13 +7,13 @@
       // Get the current path
       const path = window.location.pathname;
       
-      // If the path doesn't start with /geonotes-react/, redirect to the correct path
-      if (!path.startsWith('/geonotes-react/')) {
-        const newPath = '/geonotes-react' + path;
+      // If the path doesn't start with /geonotes-gh/, redirect to the correct path
+      if (!path.startsWith('/geonotes-gh/')) {
+        const newPath = '/geonotes-gh' + path;
         window.location.replace(newPath);
       } else {
         // If we're already on the correct path, redirect to index.html
-        window.location.replace('/geonotes-react/index.html');
+        window.location.replace('/geonotes-gh/index.html');
       }
     </script>
   </head>

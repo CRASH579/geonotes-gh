@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
-  base: '/geonotes-react/',
+  base: '/geonotes-gh/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
