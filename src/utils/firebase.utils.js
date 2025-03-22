@@ -12,6 +12,23 @@ import {
   setPersistence
 } from 'firebase/auth';
 
+// Validate environment variables
+const requiredEnvVars = [
+  'VITE_FIREBASE_API_KEY',
+  'VITE_FIREBASE_AUTH_DOMAIN',
+  'VITE_FIREBASE_PROJECT_ID',
+  'VITE_FIREBASE_STORAGE_BUCKET',
+  'VITE_FIREBASE_MESSAGING_SENDER_ID',
+  'VITE_FIREBASE_APP_ID'
+];
+
+const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
+
+if (missingVars.length > 0) {
+  console.error('Missing required environment variables:', missingVars);
+  throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+}
+
 // Log environment variables for debugging (remove in production)
 console.log('Environment variables available:', Object.keys(import.meta.env));
 console.log('Firebase Config:', {
@@ -36,12 +53,16 @@ const firebaseConfig = {
 let app;
 try {
   console.log('Attempting to initialize Firebase...');
+  if (!firebaseConfig.apiKey) {
+    throw new Error('Firebase API key is missing');
+  }
   app = initializeApp(firebaseConfig);
   console.log('Firebase initialized successfully');
 } catch (error) {
   console.error('Firebase initialization error:', error);
   if (!/already exists/.test(error.message)) {
     console.error('Firebase initialization error stack:', error.stack);
+    throw error; // Re-throw the error to prevent the app from running with invalid Firebase config
   }
 }
 
