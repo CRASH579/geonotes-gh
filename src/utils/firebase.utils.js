@@ -8,7 +8,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  browserLocalPersistence
+  browserLocalPersistence,
+  setPersistence
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -45,10 +46,18 @@ googleProvider.setCustomParameters({
 });
 
 // Configure persistence for GitHub Pages
-auth.setPersistence(browserLocalPersistence)
+setPersistence(auth, browserLocalPersistence)
   .catch((error) => {
     console.error('Error setting persistence:', error);
   });
+
+// Add error handling for Firebase operations
+const handleFirebaseError = (error) => {
+  console.error('Firebase operation error:', error);
+  if (error.code === 'auth/network-request-failed') {
+    console.error('Network request failed. Please check your connection and try again.');
+  }
+};
 
 export { 
   auth, 
@@ -58,7 +67,8 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword, 
   signInWithPopup,
-  signOut 
+  signOut,
+  handleFirebaseError
 };
 
 
