@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import WebMap from './components/WebMap';
 import LoginPage from './components/LoginPage';
@@ -9,30 +10,32 @@ import Notes from './components/Notes';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
-        <Route 
-          path="/notes" 
-          element={
-            <ProtectedRoute>
-              <Notes />
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path="/webmap" 
-          element={
-            <ProtectedRoute>
-              <WebMap />
-            </ProtectedRoute>
-          } 
-        />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+          <Route 
+            path="/notes" 
+            element={
+              <ProtectedRoute>
+                <Notes />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+            path="/webmap" 
+            element={
+              <ProtectedRoute>
+                <WebMap />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
