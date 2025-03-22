@@ -32,5 +32,8 @@ export default defineConfig({
     }
   },
   publicDir: 'public',
-  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+  optimizeDeps: {
+    include: ['@react-google-maps/api', '@vis.gl/react-google-maps']
+  }
 })

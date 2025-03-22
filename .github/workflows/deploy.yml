@@ -25,7 +25,8 @@ jobs:
         run: |
           rm -rf node_modules
           rm -rf dist
-          npm ci
+          npm install
+          npm install @react-google-maps/api @vis.gl/react-google-maps
         
       - name: Build
         run: npm run build
