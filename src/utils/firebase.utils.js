@@ -7,7 +7,8 @@ import {
   getAuth, 
   signInWithEmailAndPassword,
   signInWithPopup,
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  browserLocalPersistence
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -40,11 +41,14 @@ googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 // Set custom parameters
 googleProvider.setCustomParameters({
-    client_id: '510491987865-15vdtf9k9mj6h8n3qr0fvu5si2dsdahh.apps.googleusercontent.com',
     prompt: 'select_account'
 });
 
-
+// Configure persistence for GitHub Pages
+auth.setPersistence(browserLocalPersistence)
+  .catch((error) => {
+    console.error('Error setting persistence:', error);
+  });
 
 export { 
   auth, 
