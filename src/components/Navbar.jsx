@@ -34,9 +34,9 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
                 <a href='/' className="flex items-center hover:scale-105 transition-all">
                     <img 
-                        src="./logo.svg" 
-                        className="w-12 " 
-                        alt="logo" 
+                        src="/geonotes-gh/logo.svg"
+                        className="w-8 h-8"
+                        alt="logo"
                     />
                     <span className="ml-3 text-2xl font-semibold text-black ">Geonotes</span>
                 </a>
