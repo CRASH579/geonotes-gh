@@ -13,13 +13,14 @@ import {
 } from 'firebase/auth';
 
 // Log environment variables for debugging (remove in production)
+console.log('Environment variables available:', Object.keys(import.meta.env));
 console.log('Firebase Config:', {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY ? 'Present' : 'Missing',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN ? 'Present' : 'Missing',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID ? 'Present' : 'Missing',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET ? 'Present' : 'Missing',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID ? 'Present' : 'Missing',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID ? 'Present' : 'Missing'
 });
 
 const firebaseConfig = {
@@ -34,10 +35,13 @@ const firebaseConfig = {
 // Initialize Firebase only if it hasn't been initialized
 let app;
 try {
+  console.log('Attempting to initialize Firebase...');
   app = initializeApp(firebaseConfig);
+  console.log('Firebase initialized successfully');
 } catch (error) {
+  console.error('Firebase initialization error:', error);
   if (!/already exists/.test(error.message)) {
-    console.error('Firebase initialization error', error.stack);
+    console.error('Firebase initialization error stack:', error.stack);
   }
 }
 
